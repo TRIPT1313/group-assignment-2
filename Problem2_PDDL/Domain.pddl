@@ -1,0 +1,36 @@
+(define (domain mars-rover)
+ (:requirements :strips :typing)
+ (:types rover location rock bay drill)
+ (:predicates
+  (at ?r - rover ?l - location)
+  (connected ?from - location ?to - location)
+  (rock-at ?s - rock ?l - location)
+  (bay-empty ?b - bay)
+  (in-bay ?s - rock ?b - bay)
+  (hard ?s - rock)
+  (soft ?s - rock)
+  (drill-at ?d - drill ?l - location)
+  (has-drill ?r - rover)
+  (collected ?s - rock)
+ )
+ (:action move
+  :parameters (?r - rover ?from - location ?to - location)
+  :precondition (and (at ?r ?from) (connected ?from ?to))
+  :effect (and (not (at ?r ?from)) (at ?r ?to)))
+ (:action pick-drill
+  :parameters (?r - rover ?d - drill ?l - location)
+  :precondition (and (at ?r ?l) (drill-at ?d ?l))
+  :effect (and (has-drill ?r) (not (drill-at ?d ?l))))
+ (:action collect-soft
+  :parameters (?r - rover ?s - rock ?l - location ?b - bay)
+  :precondition (and (at ?r ?l) (rock-at ?s ?l) (bay-empty ?b) (soft ?s))
+  :effect (and (in-bay ?s ?b) (not (rock-at ?s ?l)) (not (bay-empty ?b)) (collected ?s)))
+ (:action collect-hard
+  :parameters (?r - rover ?s - rock ?l - location ?b - bay)
+  :precondition (and (at ?r ?l) (rock-at ?s ?l) (bay-empty ?b) (hard ?s) (has-drill ?r))
+  :effect (and (in-bay ?s ?b) (not (rock-at ?s ?l)) (not (bay-empty ?b)) (collected ?s)))
+ (:action deposit
+  :parameters (?r - rover ?s - rock ?l - location ?b - bay)
+  :precondition (and (at ?r ?l) (in-bay ?s ?b))
+  :effect (and (rock-at ?s ?l) (bay-empty ?b) (not (in-bay ?s ?b))))
+)

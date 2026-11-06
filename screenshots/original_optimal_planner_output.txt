@@ -1,0 +1,76 @@
+{
+  "strategy": "A* optimal",
+  "length": 25,
+  "total_actions": 25,
+  "states_expanded": 1520,
+  "planning_seconds": 0.020247,
+  "states_generated": 1947
+}
+
+PLAN:
+(move Curiosity Base SiteB)
+(collect-soft Curiosity Rock2 SiteB Bay1)
+(move Curiosity SiteB SiteD)
+(collect-soft Curiosity Rock4 SiteD Bay2)
+(move Curiosity SiteD SiteB)
+(move Curiosity SiteB Base)
+(deposit Curiosity Rock2 Base Bay1)
+(deposit Curiosity Rock4 Base Bay2)
+(move Curiosity Base SiteA)
+(move Curiosity SiteA SiteC)
+(move Curiosity SiteC SiteE)
+(pick-drill Curiosity Drill1 SiteE)
+(move Curiosity SiteE SiteF)
+(collect-hard Curiosity Rock5 SiteF Bay1)
+(move Curiosity SiteF SiteE)
+(move Curiosity SiteE SiteC)
+(collect-hard Curiosity Rock3 SiteC Bay2)
+(move Curiosity SiteC SiteA)
+(move Curiosity SiteA Base)
+(deposit Curiosity Rock3 Base Bay2)
+(move Curiosity Base SiteA)
+(collect-soft Curiosity Rock1 SiteA Bay2)
+(move Curiosity SiteA Base)
+(deposit Curiosity Rock1 Base Bay2)
+(deposit Curiosity Rock5 Base Bay1)
+
+VALIDATOR:
+01: (move Curiosity Base SiteB) => rover=SiteB, drill=False, rock statuses=(0, 0, 0, 0, 0)
+02: (collect-soft Curiosity Rock2 SiteB Bay1) => rover=SiteB, drill=False, rock statuses=(0, 1, 0, 0, 0)
+03: (move Curiosity SiteB SiteD) => rover=SiteD, drill=False, rock statuses=(0, 1, 0, 0, 0)
+04: (collect-soft Curiosity Rock4 SiteD Bay2) => rover=SiteD, drill=False, rock statuses=(0, 1, 0, 2, 0)
+05: (move Curiosity SiteD SiteB) => rover=SiteB, drill=False, rock statuses=(0, 1, 0, 2, 0)
+06: (move Curiosity SiteB Base) => rover=Base, drill=False, rock statuses=(0, 1, 0, 2, 0)
+07: (deposit Curiosity Rock2 Base Bay1) => rover=Base, drill=False, rock statuses=(0, 3, 0, 2, 0)
+08: (deposit Curiosity Rock4 Base Bay2) => rover=Base, drill=False, rock statuses=(0, 3, 0, 3, 0)
+09: (move Curiosity Base SiteA) => rover=SiteA, drill=False, rock statuses=(0, 3, 0, 3, 0)
+10: (move Curiosity SiteA SiteC) => rover=SiteC, drill=False, rock statuses=(0, 3, 0, 3, 0)
+11: (move Curiosity SiteC SiteE) => rover=SiteE, drill=False, rock statuses=(0, 3, 0, 3, 0)
+12: (pick-drill Curiosity Drill1 SiteE) => rover=SiteE, drill=True, rock statuses=(0, 3, 0, 3, 0)
+13: (move Curiosity SiteE SiteF) => rover=SiteF, drill=True, rock statuses=(0, 3, 0, 3, 0)
+14: (collect-hard Curiosity Rock5 SiteF Bay1) => rover=SiteF, drill=True, rock statuses=(0, 3, 0, 3, 1)
+15: (move Curiosity SiteF SiteE) => rover=SiteE, drill=True, rock statuses=(0, 3, 0, 3, 1)
+16: (move Curiosity SiteE SiteC) => rover=SiteC, drill=True, rock statuses=(0, 3, 0, 3, 1)
+17: (collect-hard Curiosity Rock3 SiteC Bay2) => rover=SiteC, drill=True, rock statuses=(0, 3, 2, 3, 1)
+18: (move Curiosity SiteC SiteA) => rover=SiteA, drill=True, rock statuses=(0, 3, 2, 3, 1)
+19: (move Curiosity SiteA Base) => rover=Base, drill=True, rock statuses=(0, 3, 2, 3, 1)
+20: (deposit Curiosity Rock3 Base Bay2) => rover=Base, drill=True, rock statuses=(0, 3, 3, 3, 1)
+21: (move Curiosity Base SiteA) => rover=SiteA, drill=True, rock statuses=(0, 3, 3, 3, 1)
+22: (collect-soft Curiosity Rock1 SiteA Bay2) => rover=SiteA, drill=True, rock statuses=(2, 3, 3, 3, 1)
+23: (move Curiosity SiteA Base) => rover=Base, drill=True, rock statuses=(2, 3, 3, 3, 1)
+24: (deposit Curiosity Rock1 Base Bay2) => rover=Base, drill=True, rock statuses=(3, 3, 3, 3, 1)
+25: (deposit Curiosity Rock5 Base Bay1) => rover=Base, drill=True, rock statuses=(3, 3, 3, 3, 3)
+FINAL STATE: {
+  "valid": true,
+  "rover_at": "Base",
+  "drill_carried": true,
+  "rock_locations": {
+    "Rock1": "Base",
+    "Rock2": "Base",
+    "Rock3": "Base",
+    "Rock4": "Base",
+    "Rock5": "Base"
+  },
+  "Bay1": "Empty",
+  "Bay2": "Empty"
+}
